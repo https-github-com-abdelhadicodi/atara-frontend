@@ -231,9 +231,9 @@
   
     .pay-value {
       background-color: var(--button);
-      color: white;
+      color: black;
       position: absolute;
-      bottom: 75px;
+      bottom: 60px;
       font-size: 14px;
       padding: 5px;
       border-radius: 10px;
