@@ -7,28 +7,28 @@ const arrayArrival = [
     alt: "black pepper",
     name: "Black Pepper",
     category: "Spice",
-    price: "$45.95",
+    price: "$0.4/g",
   },
   {
     src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs_kvkFLdwgOpvuMhtNALVZsLo2mGlMf3vOl4xFFI77OHLGfwnlvoL2Ogmt3LTeqf9HX0&usqp=CAU",
     alt: "Cinamon",
     name: "Cinamon",
     category: "Herbs",
-    price: "$20.95",
+    price: "$0.5/g",
   },
   {
     src: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/320546_2200-732x549.jpg",
     alt: "Ginger",
     name: "Ginger",
     category: "Herbs",
-    price: "$12.50",
+    price: "$0.7/g",
   },
   {
     src: "https://assets.iflscience.com/assets/articleNo/67832/aImg/66205/paprika-m.png",
     alt: "Paprika",
     name: "Paprika",
     category: "Spice",
-    price: "$12.50",
+    price: "$0.5/g",
   },
 ];
 function newProduct() {
