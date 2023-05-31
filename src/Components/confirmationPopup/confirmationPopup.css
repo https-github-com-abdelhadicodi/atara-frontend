@@ -1,0 +1,102 @@
+#modal {
+    margin: auto;
+    padding: 25px;
+    width: 500px;
+    max-width: 80%;
+    border-radius: 10px;
+    background-color: white;
+    transition: 200ms ease-in-out;
+}
+
+#modal .close-x {
+    height: 25px;
+    width: 25px;
+    margin-left: auto;
+    margin-bottom: 10px;
+    display: block;
+    padding: 4px;
+    border-radius: 50%;
+    color: #000;
+    transition: .25s all ease-in-out;
+}
+
+#modal .close-x:hover {
+    background: rgba(0, 0, 0, 0.07);
+    cursor: pointer;
+}
+
+#modal,
+#modal fieldset {
+    border: 0;
+}
+
+#modal fieldset {
+    position: relative;
+}
+
+#modal input {
+    height: 50px;
+    width: 100%;
+    padding: 6px 24px 6px 6px;
+    border: 1px solid #68c2cf;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    outline: 0;
+    font-size: 14px;
+    transition: all .5s ease;
+}
+
+#modal label {
+    padding: 0 4px;
+    position: absolute;
+    top: -2px;
+    left: 25px;
+    background-color: white;
+    color: #1C1E4A;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#modal button {
+    margin-bottom: 12px;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    background-color: #68c2cf;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .14);
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: .5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, .14);
+    text-transform: uppercase;
+    transition: all .5s ease;
+}
+
+#modal button:hover {
+    background: #40b2c2;
+}
+.confirmation-popup {
+    text-align: center;
+}
+
+.confirmation-popup p {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.confirmation-popup div {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.confirmation-popup #confirmation-delete-btn {
+    background: #e52f3f;
+}
+
+.confirmation-popup #confirmation-delete-btn:hover {
+    background: #d11a2a;
+}

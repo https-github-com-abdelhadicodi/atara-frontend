@@ -1,0 +1,152 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  height: 300px;
+  color: #e3dff0;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.temporary_text{
+  height: 250px;
+  width: 400px;
+}
+
+.temporary_text img {
+  height: 100%;
+  font-size: 14px;
+  padding: 6px 12px;
+  color: #f8f8f8;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px; 
+}
+
+.card_title {
+  font-weight: bold;
+  color: #e3dff0;
+}
+.card_content .card_title {
+  color: var(--accent);
+}
+
+.card_content {
+  height: 65%;
+  position: absolute;
+  left: 8px;
+  bottom: -20px;
+  /* edit the width to fit card */
+  width: 100%;
+  padding:15px 5px 18px ;
+  background: var(--green);
+  color: white;
+  border-top-left-radius: 20px;
+  /* edit here to change the height of the content box */
+  transform: translateY(150px);
+  transition: transform 0.25s;
+}
+.card_content:hover{
+  height: 78%;
+
+}
+
+.card_content::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 100px;
+  height: 100px;
+  transform: rotate(-175deg);
+  border-radius: 50%;
+  box-shadow: inset 42px 46px var(--accent);
+}
+
+.card_title {
+  color: #131313;
+  line-height: 15px;
+}
+
+.card_subtitle {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.card_description {
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.card:hover .card_content {
+  transform: translateY(0);
+}
+
+.card:hover .card_description {
+  opacity: 1;
+  transition-delay: 0.25s;
+  font-size: 14px;
+  
+}
+
+.card_note {
+  color: var(--accent);
+  opacity: 1;
+  transition-delay: 0.25s;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.product-cardss {
+  display: flex;
+  /* margin: 100px; */
+  margin-left: 30px;
+  gap: 80px;
+  flex-wrap: wrap;
+  min-height: calc(95vh - 78px);
+  padding: 15px;
+}
+.price-icon{
+  cursor: pointer;
+}
+
+.buttons-product {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.buttons-product button {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  background-color: transparent;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.buttons-product button:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+.buttons-product button.active {
+  background-color: var(--accent);
+  color: white;
+}
+@media screen and (max-width: 1109px){
+  .buttons-product{
+    display: flex;
+  }
+  .product-cardss{
+    margin: 20px 0; 
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+}

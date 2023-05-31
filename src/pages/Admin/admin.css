@@ -1,0 +1,25 @@
+.MuiBox-root.css-1v9ebjv {
+    margin-top: 10%;
+    width: 70%;
+}
+
+.MuiPaper-root>.MuiToolbar-root {
+    background: var(--accent);
+    color: #fff;
+}
+
+.MuiSvgIcon-root:hover,
+.MuiButtonBase-root:hover {
+    color: #000 !important;
+}
+
+.MuiPaper-root>.MuiToolbar-root .MuiButtonBase-root,
+.MuiPaper-root>.MuiToolbar-root .MuiSvgIcon-root {
+    color: #fff;
+}
+.tss-1akey0g-MUIDataTableHeadCell-data {
+    /* display: inline-block; */
+    font-size: 17px,
+}
+
+

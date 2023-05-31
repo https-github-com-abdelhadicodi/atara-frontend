@@ -1,0 +1,7 @@
+.category-name-input{
+    font-size: 18px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
