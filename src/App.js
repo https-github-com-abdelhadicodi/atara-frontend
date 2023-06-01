@@ -6,15 +6,10 @@ import Sidebar from './Components/dashboard/sidebar/sidebar.js';
 import Admin from './pages/Admin/admin.js';
 import User from './pages/user/user.js';
 import Category from './pages/Category/category.js';
-// import Dashboard from './Components/dashboard/home/dashboard.js';
-// import Navbar from './Components/navbar/navbar.js';
 import Login from './Components/login/login.js';
-// import Footer from './Components/footer/footer.js';
 import ProductCard from "./Components/productCard/productCard.js"
 import CategoryHome from "./Components/CategoryHome/categoryhome.js"
-// import categoryDesign from './Components/categoryDesign/categoryDesign.js';
 import Visitor from './Route/Visitor/visitor.js';
-// import Carousel from './Components/carousel/carousel.js';
 import CartPage from './pages/CartPage/cartpage.js';
 import Dashboard from './Components/dashboard/home/dashboard.js';
 import HomePage from './pages/HomePage/homepage.js';
@@ -30,12 +25,10 @@ const App = () => {
       <Route path="/" element={<Visitor />}>
     <Route path="/login" element={<Login />} />
     <Route path='/loginAdmin' element={<LoginAdmin/>}/>
-    {/* Add more routes here if needed */}
     <Route path="/Product" element={<ProductCard />} />
     <Route path="/Category" element={<CategoryHome />} />
     <Route path="/cartPage" element={<CartPage />} />
     <Route path='/aboutUs' element={<AboutUs />} />
-    {/* <Route path="/" element={<HomePage />} /> */}
     <Route path="/" element={<HomePage />} />
 
     <Route path="/404" element={<NotFound />} />

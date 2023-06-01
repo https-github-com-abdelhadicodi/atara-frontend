@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 function PrivateRoutes() {
   const isAuthenticated = Cookies.get("admin-token");
-  return isAuthenticated ? <Outlet /> : <Navigate to="/unauthorized" />;
+  return isAuthenticated ? <Outlet /> : <Navigate to="/home" />;
 }
 
 export default PrivateRoutes;

@@ -14,15 +14,16 @@ import Cookies from 'universal-cookie';
 
 const Sidebar = (props) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  
   const handleToggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
   const handleLogout = () => {
     const cookies = new Cookies();
     cookies.remove('token', { path: '/' });
+    console.log(cookies);
   };
-
+  
   return (
     <>
       <div className={`sidebar ${isSidebarOpen ? "close" : ""}`}>
@@ -82,15 +83,15 @@ const Sidebar = (props) => {
 
               {/* <li className="nav-link">
                 <NavLink to="/test">
-                  <BiHomeAlt className="icon" />
-                  <span className="text nav-text">anything</span>
+                <BiHomeAlt className="icon" />
+                <span className="text nav-text">anything</span>
                 </NavLink>
-              </li>
-
+                </li>
+                
               <li className="nav-link">
                 <NavLink to="/test">
-                  <BiHomeAlt className="icon" />
-                  <span className="text nav-text">anything</span>
+                <BiHomeAlt className="icon" />
+                <span className="text nav-text">anything</span>
                 </NavLink>
               </li> */}
             </ul>

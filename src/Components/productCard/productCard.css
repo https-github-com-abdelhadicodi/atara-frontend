@@ -144,8 +144,8 @@
     display: flex;
   }
   .product-cardss{
-    margin: 20px 0; 
-    align-items: center;
+    margin: 20px -30px;
+    align-items: left;
     justify-content: center;
     width: 100%;
   }
