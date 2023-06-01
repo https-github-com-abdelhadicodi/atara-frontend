@@ -53,11 +53,7 @@ export function Chart() {
         flexDirection: "column",
       }}
     >
-      <Box>
-        <Typography variant="h6" sx={{ fontWeight: "bold" }} marginBottom={1}>
-         Charts
-        </Typography>
-      </Box>
+      
       <Box>
         <Tabs
           sx={{ margin: "30px" }}
