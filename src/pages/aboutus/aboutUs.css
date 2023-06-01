@@ -27,9 +27,7 @@
 }
 
 .main-image {
-  object-fit: contain;
   max-width: 100%;
-  display: block;
 }
 
 .main-text {
@@ -53,14 +51,19 @@
   margin-top: 3em;
 }
 
- 
+ @media (max-width: 600px) {
+  .main-image {
+    max-width: 350px;
+    margin-left: -340px;
+    margin-top: 270px;
+  }
+ }
 
   @media (min-width: 600px) {
       .main-grid {
         grid-template-columns: minmax(1em, 1fr) repeat(3, minmax(20px, 320px)) minmax(1em, 1fr);
         padding: 35px;
     }
-
     
     .head {
       grid-column: 3 / -3;
