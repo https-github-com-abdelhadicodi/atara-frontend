@@ -1,5 +1,6 @@
-import { BrowserRouter as Router, Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import React from 'react';
+import { useCookies } from 'react-cookie';
 
 import Product from './pages/products/product.js';
 import Sidebar from './Components/dashboard/sidebar/sidebar.js';
@@ -16,60 +17,53 @@ import HomePage from './pages/HomePage/homepage.js';
 import NotFound from './pages/404page/NotFound.js';
 import AboutUs from './pages/aboutus/aboutUs.js';
 import LoginAdmin from './Components/login/loginAdmin.js';
+
 const App = () => {
+  const [cookies] = useCookies(['token']);
+
   return (
-    <BrowserRouter>
-    
-      
+    <Router>
       <Routes>
-      <Route path="/" element={<Visitor />}>
-    <Route path="/login" element={<Login />} />
-    <Route path='/loginAdmin' element={<LoginAdmin/>}/>
-    <Route path="/Product" element={<ProductCard />} />
-    <Route path="/Category" element={<CategoryHome />} />
-    <Route path="/cartPage" element={<CartPage />} />
-    <Route path='/aboutUs' element={<AboutUs />} />
-    <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Visitor />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/loginAdmin" element={<LoginAdmin />} />
+          <Route path="/Product" element={<ProductCard />} />
+          <Route path="/Category" element={<CategoryHome />} />
+          <Route path="/cartPage" element={<CartPage />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
+          <Route path="/" element={<HomePage />} />
 
-    <Route path="/404" element={<NotFound />} />
-    <Route path="*" element={<Navigate to="/404" replace />} />
-  </Route>
+          <Route path="/404" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/404" replace />} />
+        </Route>
 
-
-        <Route path="/sidebar" element={<Sidebar />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/adminDashboard" element={<Admin />} />
-        <Route path="/userDashboard" element={<User />} />
-        <Route path="/categoryDashboard" element={<Category />} />
-        <Route path="/productDashboard" element={<Product />} />
-
-        <Route path='*' element={<VisitorRouteWrapper/>}/>
-
+        <Route
+  path="/sidebar"
+  element={cookies.token ? <Sidebar /> : <Navigate to="/" replace />}
+/>
+<Route
+  path="/dashboard"
+  element={cookies.token ? <Dashboard /> : <Navigate to="/" replace />}
+/>
+<Route
+  path="/adminDashboard"
+  element={cookies.token ? <Admin /> : <Navigate to="/" replace />}
+/>
+<Route
+  path="/userDashboard"
+  element={cookies.token ? <User /> : <Navigate to="/" replace />}
+/>
+<Route
+  path="/categoryDashboard"
+  element={cookies.token ? <Category /> : <Navigate to="/" replace />}
+/>
+<Route
+  path="/productDashboard"
+  element={cookies.token ? <Product /> : <Navigate to="/" replace />}
+/>
       </Routes>
-     
-    
-    </BrowserRouter>
+    </Router>
   );
 };
-
-function VisitorRouteWrapper() {
-  return (
-    <>
-
-    </>
-  );
-}
-
-function DashboardWrapper() {
-  return (
-    <Routes>
-      {/* <Route path="/" element={<Dashboard />} /> */}
-      <Route path="/dashboard/Admin" element={<Admin />} />
-      <Route path="/dashboard/Product" element={<Product />} />
-
-    </Routes>
-  );
-}
-
 
 export default App;
