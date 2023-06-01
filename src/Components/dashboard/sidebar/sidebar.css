@@ -131,8 +131,10 @@
   
   .sidebar .head .image img {
     width: 180px;
-    height: 50px;
-   margin-top: 10px;
+   
+    margin-bottom: -50px;
+    margin-top: -60px;
+    object-fit: contain;
   }
   
   .sidebar .head .toggle {
@@ -178,6 +180,8 @@
   
   .sidebar .active {
     background-color: var(--accent) !important;
+    border-radius: 40px;
+    margin-right: 50px;
   }
   
   .sidebar .active>.icon,

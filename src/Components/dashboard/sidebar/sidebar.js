@@ -8,7 +8,7 @@ import {MdProductionQuantityLimits} from "react-icons/md";
 import { TbLogout } from "react-icons/tb";
 import {HiUserGroup} from "react-icons/hi"
 import CategoryIcon from '@mui/icons-material/Category';
-import logo from "./image/atara-logo.png";
+import logo from "./image/logoatara-removebg.png";
 // import TablePagination from "../../../pages/Admin/admin"
 import Cookies from 'universal-cookie';
 
