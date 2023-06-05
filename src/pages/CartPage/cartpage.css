@@ -1,0 +1,128 @@
+/* Navbar styles */
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    padding: 14px;
+  }
+  
+  /* Container styles */
+  .container {
+    margin-top: 80px;
+    display: none; /* Hide the container by default */
+  }
+  .value-table{
+    margin-left: 35px;
+    font-weight: bold;
+  }
+  .container.show {
+    display: block; /* Show the container when the "show" class is added */
+  }
+  
+  /* Cart table styles */
+  .cart-items {
+    width: 100%;
+  }
+  
+  .cart-items th,
+  .cart-items td {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* Quantity input styles */
+  .input-group {
+    width: 120px;
+    margin-left: 65px;
+  }
+  
+  .input-group-addon,
+  .item-count {
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+  }
+  
+  /* Delete button styles */
+  .delete-item {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  /* Total price styles */
+  .total-cart {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  /* Modal styles */
+  .modal-content {
+    padding: 50px;
+    height: 100vh;
+  }
+  
+  .modal-body {
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+  
+  .modal-footer {
+    justify-content: space-between;
+  }
+  
+  /* Button styles */
+  .btn {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    font-weight: bold;
+  }
+  .btn-primary:hover{
+    background-color: var(--green);
+  }
+  
+  
+  .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+  }
+  .modal-title{
+    font-size: 50px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+  }
+  .total-price-cart{
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent);
+  }
+  
+  @media (max-width: 576px) {
+    .show-cart {
+      font-size: 14px;
+    }
+    
+    .item-count,
+    .total-price-cart {
+      font-size: 12px;
+    }
+    .total-price-cart{
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--accent);
+      }
+  }

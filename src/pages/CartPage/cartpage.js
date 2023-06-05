@@ -1,102 +1,110 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+} from "@mui/material";
+import "./cartpage.css";
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
+  const [cartVisible, setCartVisible] = useState(false);
 
-  const addItemToCart = (name, price, count) => {
-    for (let item of cart) {
-      if (item.name === name) {
-        item.count++;
-        setCart([...cart]);
-        return;
-      }
+  const toggleCart = () => {
+    setCartVisible(!cartVisible);
+  };
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cartItems"));
+    if (storedCart && storedCart.length > 0) {
+      setCart(storedCart);
     }
-    const item = { name, price, count };
-    setCart([...cart, item]);
+  }, []);
+
+  const updateLocalStorage = (updateItems) => {
+    localStorage.setItem("cartItems", JSON.stringify(updateItems));
+  };
+
+  const addItemToCart = (name, price) => {
+    const existingItem = cart.find((item) => item.name === name);
+    if (existingItem) {
+      existingItem.count++;
+      setCart([...cart]);
+      updateLocalStorage(cart);
+    } else {
+      const newItem = { name, price, count: 1 };
+      setCart([...cart, newItem]);
+      updateLocalStorage([...cart, newItem]);
+    }
   };
 
   const removeItemFromCart = (name) => {
-    for (let item of cart) {
+    const updatedCart = cart.map((item) => {
       if (item.name === name) {
         item.count--;
-        if (item.count === 0) {
-          setCart(cart.filter((i) => i.name !== name));
-        } else {
-          setCart([...cart]);
-        }
-        break;
       }
-    }
+      return item;
+    });
+    const filteredCart = updatedCart.filter((item) => item.count > 0);
+    setCart(filteredCart);
+    updateLocalStorage(filteredCart);
   };
 
   const removeItemFromCartAll = (name) => {
-    setCart(cart.filter((item) => item.name !== name));
+    const updatedCart = cart.filter((item) => item.name !== name);
+    setCart(updatedCart);
+    updateLocalStorage(updatedCart);
   };
 
   const clearCart = () => {
     setCart([]);
+    updateLocalStorage([]);
   };
 
   const setCountForItem = (name, count) => {
-    const updatedCart = cart.map((item) => {
-      if (item.name === name) {
-        return { ...item, count };
-      }
-      return item;
-    });
-    setCart(updatedCart);
+    if (!isNaN(count)) {
+      const updatedCart = cart.map((item) => {
+        if (item.name === name) {
+          return { ...item, count };
+        }
+        return item;
+      });
+      setCart(updatedCart);
+      updateLocalStorage(updatedCart);
+    }
   };
 
-  const displayCart = () => {
-    return cart.map((item, index) => {
-      const { name, price, count } = item;
-      const total = (price * count).toFixed(2);
-
-      return (
-        <tr key={index}>
-          <td>{name}</td>
-          <td>({price})</td>
-          <td>
-            <div className="input-group">
-              <button
-                className="minus-item input-group-addon btn btn-primary"
-                onClick={() => removeItemFromCart(name)}
-              >
-                -
-              </button>
-              <input
-                type="number"
-                className="item-count form-control"
-                value={count}
-                onChange={(e) =>
-                  setCountForItem(name, parseInt(e.target.value))
-                }
-              />
-              <button
-                className="plus-item btn btn-primary input-group-addon"
-                onClick={() => addItemToCart(name, price, 1)}
-              >
-                +
-              </button>
-            </div>
-          </td>
-          <td>
-            <button
-              className="delete-item btn btn-danger"
-              onClick={() => removeItemFromCartAll(name)}
-            >
-              X
-            </button>
-          </td>
-          <td>{total}</td>
-        </tr>
-      );
-    });
-  };
-
-  const cartItems = displayCart();
   const totalCount = cart.reduce((acc, item) => acc + item.count, 0);
-  const totalCart = cart.reduce((acc, item) => acc + item.price * item.count, 0).toFixed(2);
+  const totalCart = cart
+    .reduce((acc, item) => acc + parseFloat(item.price) * item.count, 0)
+    .toFixed(2);
+
+  const orderNow = () => {
+    const phoneNumber = "71994020";
+    const message =
+      "Hello, I would like to place an order. Here are my order details:\n\n";
+
+    const orderItems = cart.map((item) => {
+      return `${item.name} (${item.count}) - ${item.price}`;
+    });
+
+    const orderDetails = orderItems.join("\n");
+
+    const totalPriceMessage = `Total Price: $${totalCart}`;
+    const location = "please don't forget to send your location information"
+
+    const encodedMessage = encodeURIComponent(
+      `${message}\n${orderDetails}\n\n${totalPriceMessage}\n${location}`
+    );
+    const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappLink);
+  };
 
   return (
     <div>
@@ -106,8 +114,7 @@ const CartPage = () => {
             <button
               type="button"
               className="btn btn-primary"
-              data-toggle="modal"
-              data-target="#cart"
+              onClick={toggleCart}
             >
               Cart (<span className="total-count">{totalCount}</span>)
             </button>
@@ -117,13 +124,6 @@ const CartPage = () => {
           </div>
         </div>
       </nav>
-
-      <div className="container">
-        <div className="row">
-          {/* Render the items here */}
-          {cartItems}
-        </div>
-      </div>
 
       <div
         className="modal fade"
@@ -136,24 +136,79 @@ const CartPage = () => {
         <div className="modal-dialog modal-lg" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
+              <div className="modal-title" id="exampleModalLabel">
                 Cart
-              </h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <table className="show-cart table">{cartItems}</table>
-              <div>
-                Total price: $<span className="total-cart">{totalCart}</span>
               </div>
             </div>
+            <div className="modal-body">
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Name</TableCell>
+                      <TableCell>Price</TableCell>
+                      <TableCell>Quantity</TableCell>
+                      <TableCell>Action</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {cart.map((item, index) => (
+                      <TableRow key={index}>
+                        <TableCell>{item.name}</TableCell>
+                        <TableCell>{item.price}</TableCell>
+                        <TableCell>
+                          <div className="input-group">
+                            <input
+                              type="number"
+                              min="0"
+                              className="item-count form-control"
+                              value={item.count}
+                              onChange={(e) =>
+                                setCountForItem(
+                                  item.name,
+                                  parseInt(e.target.value)
+                                )
+                              }
+                            />
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => removeItemFromCartAll(item.name)}
+                            sx={{
+                              backgroundColor: "#ee992c", // Set the background color
+                              "&:hover": {
+
+                                color: "#ee992c", // Set the hover text color
+                                backgroundColor: "#006226", // Set the hover background color
+                              },
+                            }}
+                          >
+                            Remove
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+              <div className="total-price-cart">Total price: {totalCart} $</div>
+            </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-dismiss="modal"
+              >
                 Close
               </button>
-              <button type="button" className="btn btn-primary">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={orderNow}
+              >
                 Order now
               </button>
             </div>

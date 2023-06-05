@@ -110,9 +110,22 @@
   padding: 15px;
 }
 .price-icon{
-  cursor: pointer;
+  display: flex;
+    cursor: pointer;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
-
+.card_price{
+  margin-right: 120px;
+}
+.cart-icon{
+  font-size: 25px;
+}
+.cart-icon:hover{
+  font-size: 20px;
+  color: var(--accent);
+}
 .buttons-product {
   display: flex;
   justify-content: space-evenly;
