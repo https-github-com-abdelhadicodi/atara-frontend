@@ -6,10 +6,17 @@
   align-items: center;
   justify-content: center;
 }
+.btn-404{
+  border: none;
+  background-color: white;
+  font-size: 30px;
+}
 .notfound {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 5%;
+  padding: 152px;
 }
 .page_404 img {
   width: 100%;
@@ -41,6 +48,9 @@
   justify-content: center;
   text-decoration: none;
   border-radius: 30px;
+}
+.link_404:hover{
+background-color: var(--accent);
 }
 
 .contant_box_404 {
