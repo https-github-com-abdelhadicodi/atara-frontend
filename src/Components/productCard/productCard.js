@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./productCard.css";
 import Loader from "../loader/loader.js";
 import { FaCartPlus } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const ProductCard = () => {
   const [productData, setProductData] = useState([]);
@@ -64,28 +65,14 @@ const ProductCard = () => {
 
   const addToCart = product => {
     setCart([...cart, product]);
+    Swal.fire({
+      icon: "success",
+      title: "Product Added",
+      text: "The product has been added to the cart.",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
-
-  // const addToCart = (item) => {
-  //   const existingItem = cart.find((cartItem) => cartItem.id === item.id);
-  //   if (existingItem) {
-  //     const updatedItems = cart.map((cartItem) => {
-  //       if (cartItem.id === item.id) {
-  //         return {
-  //           ...cartItem,
-  //           quantity: cartItem.quantity + 1,
-  //         };
-  //       }
-  //         return cartItem;
-  //     });
-  //     setCart(updatedItems);
-  //     updateLocalStorage(updatedItems);
-  //   } else {
-  //     const newItem = {...item, quantity: 1};
-  //     const updatedItems  = [...cart, newItem]
-  //     updateLocalStorage(updatedItems);
-  //   }
-  // };
 
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cart));
