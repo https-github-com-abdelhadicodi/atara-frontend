@@ -10,6 +10,7 @@ import {
   Button,
 } from "@mui/material";
 import "./cartpage.css";
+import { FaWhatsapp } from "react-icons/fa";
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
@@ -197,19 +198,15 @@ const CartPage = () => {
               <div className="total-price-cart">Total price: {totalCart} $</div>
             </div>
             <div className="modal-footer">
+
               <button
                 type="button"
-                className="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary"
+                className="order-btn"
                 onClick={orderNow}
               >
-                Order now
+                Order Now
+                <FaWhatsapp className="whts-icon"/>
+                {/* Order now */}
               </button>
             </div>
           </div>
