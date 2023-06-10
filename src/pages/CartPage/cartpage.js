@@ -97,10 +97,11 @@ const CartPage = () => {
     const orderDetails = orderItems.join("\n");
 
     const totalPriceMessage = `Total Price: $${totalCart}`;
-    const location = "please don't forget to send your location information"
+    const location =
+    "*_Please don't forget to send your location information_*";
 
     const encodedMessage = encodeURIComponent(
-      `${message}\n${orderDetails}\n\n${totalPriceMessage}\n${location}`
+      `${message}${orderDetails}\n\n${totalPriceMessage}\n\n${location}`
     );
     const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
