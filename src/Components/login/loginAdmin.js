@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import Cookies from 'js-cookie';
 import 'react-toastify/dist/ReactToastify.css';
 import './login.css';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,29 +17,41 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://atara-backend.onrender.com/admin/login', {
-        email,
-        password,
-      });
-      toast.success('Login successful!', {
-        position: toast.POSITION.TOP_RIGHT,
+      const response = await axios.post(
+        "https://atara-backend.onrender.com/admin/login",
+        {
+          email,
+          password,
+        }
+      );
+      Swal.fire({
+        icon: "success",
+        title: "Login successful!",
+        position: "center",
+        showConfirmButton: false,
+        timer: 1000,
       });
 
       // Save token in cookies
       const token = response.data.token;
       Cookies.set('token', token);
 
-      navigate('/dashboard');
+      navigate('/adminDashboard');
       // Handle successful login response
       console.log(response.data);
     } catch (error) {
       // Handle error
       console.error(error);
-      toast.error('Invalid email or password!', {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    }
+      Swal.fire({
+        icon: "error",
+        title: "Login failed!",
+        text: "Please check your credentials and try again.",
+        position: "center",
+        showConfirmButton: false,
+        timer: 2000,
+    })
   };
+}
 
   const handleSwitchToAdmin = () => {
     navigate('/login');
