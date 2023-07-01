@@ -57,13 +57,16 @@ const ProductCard = () => {
         console.error("Error fetching product data:", error);
         setLoading(false);
       });
+
+    // Update the URL directly
+    window.history.pushState(null, null, `/Product/${category}`);
   };
 
   const updateLocalStorage = (updateItems) => {
     localStorage.setItem("cartItems", JSON.stringify(updateItems));
   };
 
-  const addToCart = product => {
+  const addToCart = (product) => {
     setCart([...cart, product]);
     Swal.fire({
       icon: "success",
@@ -75,7 +78,7 @@ const ProductCard = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cart));
+    localStorage.setItem("cartItems", JSON.stringify(cart));
   }, [cart]);
 
   useEffect(() => {
@@ -124,7 +127,10 @@ const ProductCard = () => {
                 <p className="card_description">{product.description}</p>
                 <div className="price-icon">
                   <p className="card_price">Price: {product.price}/g</p>
-                  <FaCartPlus className="cart-icon" onClick={() => addToCart(product)} />
+                  <FaCartPlus
+                    className="cart-icon"
+                    onClick={() => addToCart(product)}
+                  />
                 </div>
                 <p className="card_note">Note: {product.note}</p>
               </div>
